@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Página Principal</title>
+<title>Erro 404</title>
 </head>
 <body>
 	<div layout:fragment="conteudo">
@@ -13,19 +13,16 @@
 		<!-- conteudo principal -->
 		<main class="mt-5 p-4 pt-5">
 			<div class="container-fluid">
-					<h1 class="mt-5 mb-5 main-title">Seja bem-vindo!</h1>
-					
-					<h2 class="secondary-title">Esse é o sistema de gerenciamento do Sindicato Sindae</h2>
+				<img th:src="@{/images/404.png}" class="img-fluid mx-auto d-block mt-5" alt="Erro 404">
+				<h3 class="text-center mt-5 mb-5">
+					O recurso que você tentou acessar não existe. Verifique a URL utilizada ou
+					<a th:href="@{/}">volte para a página principal.</a>
+				</h3>
 			</div>
 		</main>
 		<!-- !conteudo principal -->
 
 	</div>
-
-	<!-- Nao usamos
-	<th:block layout:fragment="scripts">
-		<script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
-	</th:block> -->
 
 </body>
 </html>

@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+:root {
+  --sidebar-width: 270px;
+  --top-navbar-height: 56px;
+}
+
+body{
+  font-family: "Inter", sans-serif;
+  background: #dde2ff2b;
+  color: black;
+}
+
+p{
+  margin: 0;
+}
+
+.sidebar-nav {
+  width: var(--sidebar-width) !important;
+  transform: none !important;
+  visibility: visible !important;
+  background: #ffffff;
+}
+
+.navbar-nav{
+  left: var(--sidebar-width) !important;
+  width: calc(100% - var(--sidebar-width));
+  padding: 26px 28px;		
+}
+
+.page-title{
+  	font-weight: bold;
+    font-size: 28px;
+    text-decoration: underline;
+    text-transform: uppercase;
+    color: #39396D;
+}
+
+.wrapper-username-photo{
+  display: flex;
+  align-items: center;
+}
+  
+.nav-username{
+  margin-right: 12px;
+  font-size: 20px;
+}
+  
+.nav-photo{
+  margin-left: 12px;
+}
+
+.main-title{
+  font-size: 58px;
+  font-weight: bold;
+}
+
+.secondary-title{
+  font-size: 26px;
+}
+
+
+
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+
+  main {
+    margin-left: var(--sidebar-width);
+    height: calc(100% - var(--top-navbar-height));
+  }
+
+  footer {
+    margin-left: var(--sidebar-width);
+  }
+  
+  /* this is to remove the backdrop */
+  .offcanvas-backdrop {
+    display: none !important;
+  }
+}
