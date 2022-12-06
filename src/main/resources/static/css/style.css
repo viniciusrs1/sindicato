@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 
 :root {
-  --sidebar-width: 270px;
+  --sidebar-width: 370px;
   --top-navbar-height: 56px;
 }
 
@@ -22,10 +22,45 @@ p{
   background: #ffffff;
 }
 
+.menu-logo{
+  display: flex;
+  justify-content: center;
+}
+
+.menu-logo img{
+	width: 170px;
+}
+
+.menu-itens {
+	  margin-top: 20px;
+}
+
+.menu-itens p{
+	   padding: 14px 34px;
+    font-size: 26px;
+    color: #39396d;
+    text-transform: uppercase;
+}
+
+.menu-itens p i{
+	margin-right: 20px;
+}
+
+.menu-iten-selected{
+	background: #f9faff;
+    border-left: 10px solid #39396d;
+}
+
+.logout{
+	    position: absolute;
+  
+    bottom: 0;
+    margin-bottom: 80px;
+}
 .navbar-nav{
   left: var(--sidebar-width) !important;
   width: calc(100% - var(--sidebar-width));
-  padding: 26px 28px;		
+  padding: 22px 28px;		
 }
 
 .page-title{
