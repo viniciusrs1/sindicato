@@ -35,14 +35,16 @@ p{
 	  margin-top: 20px;
 }
 
-.menu-itens p{
+.menu-itens a{
+	text-decoration: none;
 	   padding: 14px 34px;
     font-size: 26px;
-    color: #39396d;
+    color: #39396d !important;
     text-transform: uppercase;
+    display: block;
 }
 
-.menu-itens p i{
+.menu-itens a i{
 	margin-right: 20px;
 }
 
@@ -92,6 +94,70 @@ p{
 
 .secondary-title{
   font-size: 26px;
+}
+
+/*login page*/
+
+.login-body{
+	background: #ffffff;
+}
+
+.login-image img{
+	width: 260px;
+}
+
+.login-content{
+	width: 680px;
+    margin: 0 auto;
+}
+
+.login-content h3{
+	font-size: 46px;
+    margin: 0;
+    color: #39396d;
+    text-align: center;
+}
+
+.login-content p{
+	font-size: 22px;
+    margin: 12px 0;
+    color: #6d6f7e;;
+    text-align: center;
+}
+
+.login-content form{
+	display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.login-content form label{
+	font-size: 16px;
+    text-transform: uppercase;
+    color: #39396d;
+}
+
+.login-content form input{
+	height: 46px;
+    margin: 6px 0 22px;
+    border-radius: 5px;
+    border: 1px solid #39396d;
+    font-size: 20px;
+    color: #6d6f7e;
+}
+
+.login-content form button{
+	width: fit-content;
+    margin: 35px auto;
+    padding: 14px 50px;
+    font-size: 24px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    background: #39396d;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
 }
 
 
