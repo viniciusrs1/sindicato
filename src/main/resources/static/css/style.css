@@ -15,6 +15,13 @@ p{
   margin: 0;
 }
 
+.global-content{
+	background: #ffffff;
+    border-radius: 16px;
+    padding: 28px 60px;
+    margin-top: 3rem;
+}
+
 .sidebar-nav {
   width: var(--sidebar-width) !important;
   transform: none !important;
@@ -160,7 +167,83 @@ p{
     font-weight: bold;
 }
 
+/*tela administrador*/
 
+.session-title{
+	margin-bottom: 3rem;
+}
+.wrapper-search-button-input{
+	display: flex;
+    justify-content: space-between;
+}
+
+.wrapper-search-button-input input{
+    border-radius: 5px;
+    border: 1px solid #39396d;
+    font-size: 20px;
+    background: #f9faff;
+}
+
+.wrapper-search-button-input button{
+	width: fit-content;
+padding: 10px 36px;
+    font-size: 20px;
+    border-radius: 10px;
+    background: #39396d;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.wrapper-table{
+	margin-top: 3rem;
+}
+
+.wrapper-table thead{
+	    font-size: 18px;
+}
+
+.wrapper-table tbody{
+	    font-size: 22px;
+}
+
+.first-icon{
+	margin-right: 12px;
+}
+
+.add-user label{
+	display: block;
+	
+}
+
+.add-user input, .add-user select{
+	height: 46px;
+    margin: 6px 0 22px;
+    border-radius: 5px;
+    border: 1px solid #39396d;
+    font-size: 20px;
+
+	width: 100%;
+	    background: #ffffff;
+	
+}
+
+.add-user .wrapper-button{
+	display: flex;
+    justify-content: flex-end;
+    margin-top: 3rem;
+}
+
+.add-user .wrapper-button button{
+		width: fit-content;
+padding: 10px 36px;
+    font-size: 20px;
+    border-radius: 10px;
+    background: #39396d;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+}
 
 @media (min-width: 992px) {
   body {
