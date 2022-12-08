@@ -15,6 +15,10 @@ p{
   margin: 0;
 }
 
+.navbar>.container-fluid{
+  justify-content: end !important;
+}
+
 .global-content{
 	background: #ffffff;
     border-radius: 16px;
@@ -70,14 +74,6 @@ p{
   left: var(--sidebar-width) !important;
   width: calc(100% - var(--sidebar-width));
   padding: 22px 28px;		
-}
-
-.page-title{
-  	font-weight: bold;
-    font-size: 28px;
-    text-decoration: underline;
-    text-transform: uppercase;
-    color: #39396D;
 }
 
 .wrapper-username-photo{
@@ -181,7 +177,7 @@ p{
     border-radius: 5px;
     border: 1px solid #39396d;
     font-size: 20px;
-    background: #f9faff;
+    background: #ffffff;
 }
 
 .wrapper-search-button-input button{
@@ -195,6 +191,10 @@ padding: 10px 36px;
     font-weight: bold;
 }
 
+.wrapper-search-button-input button a{
+	text-decoration: none;
+    color: white;
+}
 .wrapper-table{
 	margin-top: 3rem;
 }
@@ -216,7 +216,8 @@ padding: 10px 36px;
 	
 }
 
-.add-user input, .add-user select{
+
+.add-user input, .add-user select, .add-company input, .add-company select{
 	height: 46px;
     margin: 6px 0 22px;
     border-radius: 5px;
@@ -228,13 +229,13 @@ padding: 10px 36px;
 	
 }
 
-.add-user .wrapper-button{
+.add-user .wrapper-button, .add-company .wrapper-button{
 	display: flex;
     justify-content: flex-end;
     margin-top: 3rem;
 }
 
-.add-user .wrapper-button button{
+.add-user .wrapper-button button, .add-company .wrapper-button button{
 		width: fit-content;
 padding: 10px 36px;
     font-size: 20px;

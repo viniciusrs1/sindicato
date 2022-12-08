@@ -25,4 +25,14 @@ public class IndexController {
 	public String addUsers() {
 		return "users/addusers";
 	}
+	
+	@GetMapping(value = {"/listcompanies"} )
+	public String listCompany() {
+		return "companies/listcompanies";
+	}
+	
+	@GetMapping(value = {"/addcompanies"} )
+	public String addCompany() {
+		return "companies/addcompanies";
+	}
 }
