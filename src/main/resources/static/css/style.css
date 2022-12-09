@@ -217,7 +217,7 @@ padding: 10px 36px;
 }
 
 
-.add-user input, .add-user select, .add-company input, .add-company select{
+.add-user input, .add-user select, .add-company input, .add-company select, .add-partner input, .add-partner select{
 	height: 46px;
     margin: 6px 0 22px;
     border-radius: 5px;
@@ -229,13 +229,13 @@ padding: 10px 36px;
 	
 }
 
-.add-user .wrapper-button, .add-company .wrapper-button{
+.add-user .wrapper-button, .add-company .wrapper-button, .add-partner .wrapper-button{
 	display: flex;
     justify-content: flex-end;
     margin-top: 3rem;
 }
 
-.add-user .wrapper-button button, .add-company .wrapper-button button{
+.add-user .wrapper-button button, .add-company .wrapper-button button, .add-partner .wrapper-button button{
 		width: fit-content;
 padding: 10px 36px;
     font-size: 20px;

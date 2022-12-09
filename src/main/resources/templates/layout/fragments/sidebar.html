@@ -18,6 +18,9 @@
 				<a class="menu-iten-selected" href="/listcompanies" th:if="${#httpServletRequest.requestURI == '/listcompanies'} or ${#httpServletRequest.requestURI == '/addcompanies'}"><i class="bi bi-building"></i>Empresas</a>
 				<a href="/listcompanies" th:if="!${#httpServletRequest.requestURI == '/listcompanies'} and !${#httpServletRequest.requestURI == '/addcompanies'}"><i class="bi bi-building"></i>Empresas</a>
 				
+				<a class="menu-iten-selected" href="/listpartners" th:if="${#httpServletRequest.requestURI == '/listpartners'} or ${#httpServletRequest.requestURI == '/addpartners'}"><i class="bi bi-people"></i></i>Sócios</a>
+				<a href="/listpartners" th:if="!${#httpServletRequest.requestURI == '/listpartners'} and !${#httpServletRequest.requestURI == '/addpartners'}"><i class="bi bi-people"></i></i>Sócios</a>
+				
 				
 				
 				<a class="logout" href="#"><i class="bi bi-box-arrow-left"></i>Sair</a>

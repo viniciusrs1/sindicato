@@ -35,4 +35,14 @@ public class IndexController {
 	public String addCompany() {
 		return "companies/addcompanies";
 	}
+	
+	@GetMapping(value = {"/listpartners"} )
+	public String listPartner() {
+		return "partners/listpartners";
+	}
+	
+	@GetMapping(value = {"/addpartners"} )
+	public String addPartner() {
+		return "partners/addpartners";
+	}
 }
