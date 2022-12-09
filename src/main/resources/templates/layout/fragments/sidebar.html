@@ -9,10 +9,16 @@
 			</div>
 			<div class="menu-itens">
 				
-				<a class="menu-iten-selected" href="/"><i class="bi bi-house"></i>Início</a>
-				<a href="/listusers"><i class="bi bi-briefcase"></i>Administrador</a>
-				<a href="/listcompanies"><i class="bi bi-building"></i>Empresas</a>
-				<a href="#"><i class="bi bi-people-fill"></i>Sócios</a>
+				<a class="menu-iten-selected" href="/" th:if="${#httpServletRequest.requestURI == '/'}"><i class="bi bi-house"></i>Início</a>
+				<a  href="/" th:if="!${#httpServletRequest.requestURI == '/'}"><i class="bi bi-house"></i>Início</a>
+				
+				<a class="menu-iten-selected" href="/listusers" th:if="${#httpServletRequest.requestURI == '/listusers'} or ${#httpServletRequest.requestURI == '/addusers'}"><i class="bi bi-briefcase"></i>Usuários</a>
+				<a href="/listusers" th:if="!${#httpServletRequest.requestURI == '/listusers'} and !${#httpServletRequest.requestURI == '/addusers'}"><i class="bi bi-briefcase"></i>Usuários</a>
+				
+				<a class="menu-iten-selected" href="/listcompanies" th:if="${#httpServletRequest.requestURI == '/listcompanies'} or ${#httpServletRequest.requestURI == '/addcompanies'}"><i class="bi bi-building"></i>Empresas</a>
+				<a href="/listcompanies" th:if="!${#httpServletRequest.requestURI == '/listcompanies'} and !${#httpServletRequest.requestURI == '/addcompanies'}"><i class="bi bi-building"></i>Empresas</a>
+				
+				
 				
 				<a class="logout" href="#"><i class="bi bi-box-arrow-left"></i>Sair</a>
 				
