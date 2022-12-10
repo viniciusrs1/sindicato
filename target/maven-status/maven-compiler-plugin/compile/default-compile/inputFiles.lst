@@ -1,3 +1,17 @@
 /home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/Application.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/model/Socio.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/service/TaxaService.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/service/SocioService.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/validation/service/UniqueValue.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/validation/util/ReflectUtil.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/repository/EmpresaRepository.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/model/Status.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/model/Taxa.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/pagination/PageWrapper.java
 /home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/controller/IndexController.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/repository/TaxaRepository.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/service/EmpresaService.java
 /home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/aop/ApplicationLoggingAspect.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/repository/SocioRepository.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/model/Empresa.java
+/home/caio/Desktop/daw/sindicato/src/main/java/web/sindicato/validation/util/AttributesRelation.java

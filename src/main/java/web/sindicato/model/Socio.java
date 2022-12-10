@@ -32,9 +32,7 @@ public class Socio implements Serializable {
 	@SequenceGenerator(name = "gerador2", sequenceName = "socio_codigo_seq", allocationSize = 1)
 	@GeneratedValue(generator = "gerador2", strategy = GenerationType.SEQUENCE)
 	private Long codigo;
-	@NotBlank(message = "O nome é obrigatório.")
 	private String nome;
-	@NotBlank(message = "O cargo é obrigatório.")
 	private String cargo;
 	@Column(name = "data_criacao")
 	private LocalDate dataCriacao;
@@ -45,6 +43,8 @@ public class Socio implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codigo_empresa")
 	private Empresa empresa;
+	
+	
 	public Boolean getPendente() {
 		return pendente;
 	}

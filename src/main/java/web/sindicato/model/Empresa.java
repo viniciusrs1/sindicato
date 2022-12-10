@@ -29,9 +29,7 @@ public class Empresa implements Serializable {
 	@SequenceGenerator(name="gerador", sequenceName="empresa_codigo_seq", allocationSize=1)
 	@GeneratedValue(generator="gerador", strategy = GenerationType.SEQUENCE)
 	private Long codigo;
-	@NotBlank(message = "O nome é obrigatório")
 	private String nome;
-	@NotNull(message = "A taxa é obrigatória")
 	private Float taxa;
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.ATIVO;
