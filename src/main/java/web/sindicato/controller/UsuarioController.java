@@ -38,8 +38,9 @@ public class UsuarioController {
 	private CadastroUsuarioService cadastroUsuarioService;
 	
 	@GetMapping("/listar")
-	public String listUsers() {
-		
+	public String listUsers(Usuario usuario, Model model) {
+		List<Papel> papeis = papelRepository.findAll();
+		model.addAttribute("todosPapeis", papeis);
 		return "users/listusers";
 	}
 	

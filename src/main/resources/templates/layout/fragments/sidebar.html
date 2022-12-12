@@ -12,11 +12,11 @@
 				<a class="menu-iten-selected" href="/" th:if="${#httpServletRequest.requestURI == '/'}"><i class="bi bi-house"></i>Início</a>
 				<a  href="/" th:if="!${#httpServletRequest.requestURI == '/'}"><i class="bi bi-house"></i>Início</a>
 				
-				<a class="menu-iten-selected" href="usuarios/listar" th:if="${#httpServletRequest.requestURI == '/usuarios/listar'} or ${#httpServletRequest.requestURI == '/usuarios/adicionar'}"><i class="bi bi-briefcase"></i>Usuários</a>
+				<a class="menu-iten-selected" href="/usuarios/listar" th:if="${#httpServletRequest.requestURI == '/usuarios/listar'} or ${#httpServletRequest.requestURI == '/usuarios/adicionar'}"><i class="bi bi-briefcase"></i>Usuários</a>
 				<a href="/usuarios/listar" th:if="!${#httpServletRequest.requestURI == '/usuarios/listar'} and !${#httpServletRequest.requestURI == '/usuarios/adicionar'}"><i class="bi bi-briefcase"></i>Usuários</a>
 				
-				<a class="menu-iten-selected" href="/listcompanies" th:if="${#httpServletRequest.requestURI == '/listcompanies'} or ${#httpServletRequest.requestURI == '/addcompanies'}"><i class="bi bi-building"></i>Empresas</a>
-				<a href="/listcompanies" th:if="!${#httpServletRequest.requestURI == '/listcompanies'} and !${#httpServletRequest.requestURI == '/addcompanies'}"><i class="bi bi-building"></i>Empresas</a>
+				<a class="menu-iten-selected" href="/empresas/listar" th:if="${#httpServletRequest.requestURI == '/empresas/listar'} or ${#httpServletRequest.requestURI == '/empresas/adicionar'}"><i class="bi bi-building"></i>Empresas</a>
+				<a href="/empresas/listar" th:if="!${#httpServletRequest.requestURI == '/empresas/listar'} and !${#httpServletRequest.requestURI == '/empresas/adicionar'}"><i class="bi bi-building"></i>Empresas</a>
 				
 				<a class="menu-iten-selected" href="/listpartners" th:if="${#httpServletRequest.requestURI == '/listpartners'} or ${#httpServletRequest.requestURI == '/addpartners'}"><i class="bi bi-people"></i></i>Sócios</a>
 				<a href="/listpartners" th:if="!${#httpServletRequest.requestURI == '/listpartners'} and !${#httpServletRequest.requestURI == '/addpartners'}"><i class="bi bi-people"></i></i>Sócios</a>

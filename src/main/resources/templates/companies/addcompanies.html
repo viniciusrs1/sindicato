@@ -17,23 +17,23 @@
 				<h3 class="session-title">Adicionar empresa</h3>
 				
 				<div class="add-company">
-					<form>
+					<form th:action="@{/empresas/adicionar}" method="post" th:object="${empresa}">
 			    		
 			    		<div class="row">
 			    			<div class="col-9">
 					    		<label for="name">Nome</label>
-					    		<input type="text" name="name" id="name">
+					    		<input type="text" name="name" id="name" th:field="*{nome}">
 				    		</div>
 				    		
 				    		<div class="col-3">
 					    		<label for="tax">Valor da taxa</label>
-					    		<input type="text" name="tax" id="tax">
+					    		<input type="text" name="tax" id="tax" th:field="*{taxa}">
 				    		</div>
 				    		
 			    		</div>			    		
 			    					    		
 			    		<div class="wrapper-button">
-			    			<button>Adicionar</button>
+			    			<button type="submit">Adicionar</button>
 			            </div>
 			        </form>
 				</div>

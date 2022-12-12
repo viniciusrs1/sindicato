@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Adicionar empresa</title>
+<title>Alterar empresa</title>
 </head>
 <body>
 	<div layout:fragment="conteudo">
@@ -14,11 +14,11 @@
 		<main class="mt-5 p-4 pt-5">
 			<div class="container-fluid">
 			<div class="global-content">
-				<h3 class="session-title">Adicionar empresa</h3>
+				<h3 class="session-title">Alterar empresa</h3>
 				
 				<div class="add-company">
-					<form th:action="@{/empresas/adicionar}" method="post" th:object="${empresa}">
-			    		
+					<form th:action="@{/empresas/alterar}" method="post" th:object="${empresa}">
+			    		<input type="hidden" name="codigo" th:value="*{codigo}">
 			    		<div class="row">
 			    			<div class="col-9">
 					    		<label for="name">Nome</label>
@@ -33,14 +33,12 @@
 			    		</div>			    		
 			    					    		
 			    		<div class="wrapper-button">
-			    			<button type="submit">Adicionar</button>
+			    			<button>Alterar</button>
 			            </div>
 			        </form>
 				</div>
 				
-				
-				
-			</div>
+				</div>
 			</div>
 		</main>
 		<!-- !conteudo principal -->

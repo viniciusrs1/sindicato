@@ -269,6 +269,24 @@ padding: 10px 36px;
 	 width: 46px;
 }
 
+.form-actions{
+	display: flex;
+}
+
+.form-actions button{
+	background: none;
+    border: none;
+    color: black;
+    font-size: 22px;
+    padding: 0;
+}
+
+.form-actions button:hover{
+	background: none;
+ 	color: black;
+    padding: 0;
+}
+
 @media (min-width: 992px) {
   body {
     overflow: auto !important;

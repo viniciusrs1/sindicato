@@ -18,7 +18,7 @@
 				
 				<div class="wrapper-search-button-input">
 					<input type="text" name="user" id="user" placeholder="Buscar...">
-					<button ><a href="/addcompanies">Adicionar empresa</a></button>
+					<button ><a href="/empresas/adicionar">Adicionar empresa</a></button>
 				</div>
 				
 				<div class="wrapper-table">
@@ -31,29 +31,38 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr >
-								<td >Copasa</td>
-								<td >Adequado</td>
+							<tr th:each="e : ${pagina.conteudo}">
+								<td th:text="${e.nome}"></td>
+								<td th:text="${e.taxa}"></td>
 
 								<td>
-									<div>
-										<i class="bi bi-pencil-square first-icon"></i>
-										<i class="bi bi-trash"></i>
+									<div class="form-actions">
+										<form th:action="@{/empresas/abriralterar}" method="post">
+											<input type="hidden" name="codigo" th:value="${e.codigo}">
+											<input type="hidden" name="nome" th:value="${e.nome}">
+											<input type="hidden" name="taxa" th:value="${e.taxa}">
+											<button type="submit" title="Editar" class="btn btn-secondary">
+												<i class="bi bi-pencil-square first-icon"></i>
+											</button>
+										</form>
+										<form th:action="@{/empresas/remover}" method="post">
+							
+											<input type="hidden" th:value="'Você tem certeza que quer remover a empresa ' + ${e.nome} + '?'" class="mensagem">
+										
+											<input type="hidden" name="codigo" th:value="${e.codigo}">
+											<input type="hidden" name="nome" th:value="${e.nome}">
+											<input type="hidden" name="taxa" th:value="${e.taxa}">
+											<button type="submit" title="Remover" class="btn btn-danger confirmacao">
+												<i class="bi bi-trash"></i>
+											</button>
+										</form>
+										
+										
 									</div>
 								</td>								
 							</tr>
 							
-							<tr >
-								<td >Cemig</td>
-								<td >Pendência</td>
-
-								<td>
-									<div>
-										<i class="bi bi-pencil-square first-icon"></i>
-										<i class="bi bi-trash"></i>
-									</div>
-								</td>								
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
