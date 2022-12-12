@@ -17,15 +17,6 @@ public class IndexController {
 	}
 
 	
-	@GetMapping(value = {"/listusers"} )
-	public String listUsers() {
-		return "users/listusers";
-	}
-	
-	@GetMapping(value = {"/addusers"} )
-	public String addUsers() {
-		return "users/addusers";
-	}
 	
 	@GetMapping(value = {"/listcompanies"} )
 	public String listCompany() {

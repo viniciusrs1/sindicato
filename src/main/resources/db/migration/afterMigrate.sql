@@ -1,12 +1,18 @@
 ALTER TABLE public.empresas DISABLE TRIGGER ALL;
 ALTER TABLE public.socios DISABLE TRIGGER ALL;
 ALTER TABLE public.taxas DISABLE TRIGGER ALL;
+ALTER TABLE public.usuarios DISABLE TRIGGER ALL;
+ALTER TABLE public.papel DISABLE TRIGGER ALL;
+ALTER TABLE public.usuario_papel DISABLE TRIGGER ALL;
 
 SET session_replication_role TO replica;
 
 delete from public.empresas;
 delete from public.socios;
 delete from public.taxas;
+delete from public.usuarios;
+delete from public.papel;
+delete from public.usuario_papel;
 
 ALTER SEQUENCE public.empresas_codigo_seq RESTART WITH 1;
 UPDATE public.empresas SET codigo=nextval('public.empresas_codigo_seq');
@@ -17,11 +23,21 @@ UPDATE public.socios SET codigo=nextval('public.socios_codigo_seq');
 ALTER SEQUENCE public.taxas_codigo_seq RESTART WITH 1;
 UPDATE public.taxas SET codigo=nextval('public.taxas_codigo_seq');
 
+ALTER SEQUENCE public.usuarios_codigo_seq RESTART WITH 1;
+UPDATE public.usuarios SET codigo=nextval('public.usuarios_codigo_seq');
+
+ALTER SEQUENCE public.papel_codigo_seq RESTART WITH 1;
+UPDATE public.papel SET codigo=nextval('public.papel_codigo_seq');
+
+
 SET session_replication_role TO default;
 
 ALTER TABLE public.empresas ENABLE TRIGGER ALL;
 ALTER TABLE public.socios ENABLE TRIGGER ALL;
 ALTER TABLE public.taxas ENABLE TRIGGER ALL;
+ALTER TABLE public.usuarios ENABLE TRIGGER ALL;
+ALTER TABLE public.papel ENABLE TRIGGER ALL;
+ALTER TABLE public.usuario_papel ENABLE TRIGGER ALL;
 
 INSERT INTO public.empresas(nome, taxa, status, data_criacao, taxas_atualizadas) VALUES
 ('Cemig', 300, 'ATIVO', '09/12/2022', true),
@@ -62,4 +78,13 @@ INSERT INTO public.taxas(data, codigo_socio, valor) VALUES
 ('09/12/2022', 8, 300),
 ('09/12/2022', 9, 300);
 
+INSERT INTO usuarios (nome, nome_usuario, senha, ativo) VALUES
+('Vinicius Rodrigues de Sousa','admin', '{noop}123', true);
+
+INSERT INTO papel (codigo, nome) VALUES 
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_USUARIO');
+
+INSERT INTO usuario_papel (codigo_usuario, codigo_papel) VALUES
+(1, 1);
 
