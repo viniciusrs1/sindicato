@@ -11,10 +11,11 @@ public class IndexController {
 		return "index";
 	}
 	
-	@GetMapping(value = {"/login"} )
+	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
+
 	
 	@GetMapping(value = {"/listusers"} )
 	public String listUsers() {

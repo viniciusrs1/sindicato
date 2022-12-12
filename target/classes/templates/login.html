@@ -14,14 +14,21 @@
     	<div class="login-content">
     		<h3>Faça login para continuar</h3>
     		<p>Entre com seu nome de usuário e senha</p>
-	    	<form>
-	    		<label for="user">Usuário</label>
-	    		<input type="text" name="user" id="user">
+    		
+    		<div>
+				<span th:if="${param.error}">Usuário ou senha inválidos.</span>
+				<span th:if="${param.logout}">Você foi deslogado.</span>
+			</div>
+	    	
+	    	<form th:action="@{/login}" method="post">
+	    	
+	    		<label for="username">Usuário</label>
+	    		<input type="text" name="username" id="username" autofocus="autofocus">
 	    		
-	    		<label for="pass">Senha</label>
-	    		<input type="password" name="pass" id="pass">
+	    		<label for="password">Senha</label>
+	    		<input type="password" name="password" id="password">
 	    		
-	    		<button>Entrar</button>
+	    		<button type="submit">Entrar</button>
 	            
 	        </form>
         </div>

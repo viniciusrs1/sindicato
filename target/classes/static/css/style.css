@@ -46,7 +46,7 @@ p{
 	  margin-top: 20px;
 }
 
-.menu-itens a{
+.menu-itens a, .logout{
 	text-decoration: none;
 	   padding: 14px 34px;
     font-size: 26px;
@@ -55,7 +55,7 @@ p{
     display: block;
 }
 
-.menu-itens a i{
+.menu-itens i{
 	margin-right: 20px;
 }
 
@@ -64,11 +64,19 @@ p{
     border-left: 10px solid #39396d;
 }
 
+.menu-itens input{
+	background: none;
+    border: none;
+    padding: none !important;
+    color: #39396d !important;
+}
+
 .logout{
 	    position: absolute;
   
     bottom: 0;
     margin-bottom: 80px;
+    display: flex;
 }
 .navbar-nav{
   left: var(--sidebar-width) !important;

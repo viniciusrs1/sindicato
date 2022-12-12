@@ -9,7 +9,8 @@
         
         
         <div class="wrapper-username-photo">
-        	<p class="nav-username">Vinicius Rodrigues de Sousa</p>
+        	<p sec:authentication="principal.username" class="nav-username"></p>
+
         	<img th:src="@{/images/user-photo.png}" class="nav-photo" alt="Foto do usuário">
         </div>
 
