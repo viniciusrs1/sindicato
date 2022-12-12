@@ -57,11 +57,11 @@ public class SecurityConfig {
  	public UserDetailsService userDetailsService() {    	
           JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
           manager.setUsersByUsernameQuery("select nome_usuario, senha, ativo "
-        		  						+ "from usuarios "
+        		  						+ "from usuario "
         		  						+ "where nome_usuario = ?");
           manager.setAuthoritiesByUsernameQuery(
         		  "SELECT tab.nome_usuario , papel.nome FROM"
-        		+ "(SELECT usuarios.nome_usuario , usuarios.codigo FROM usuarios WHERE nome_usuario = ?) as tab "
+        		+ "(SELECT usuario.nome_usuario , usuario.codigo FROM usuario WHERE nome_usuario = ?) as tab "
         		+ " INNER JOIN usuario_papel ON codigo_usuario = tab.codigo "
         		+ " INNER JOIN papel ON codigo_papel = papel.codigo;");
           return manager;

@@ -254,6 +254,21 @@ padding: 10px 36px;
     font-weight: bold;
 }
 
+.select-bug{
+	display: flex;
+
+}
+
+.select-bug .form-check{
+	display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.select-bug input{
+	 width: 46px;
+}
+
 @media (min-width: 992px) {
   body {
     overflow: auto !important;

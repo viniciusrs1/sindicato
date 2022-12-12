@@ -1,6 +1,6 @@
 BEGIN;
 
-CREATE TABLE public.usuarios
+CREATE TABLE public.usuario
 (
     codigo bigserial NOT NULL,
     nome text,
@@ -25,7 +25,7 @@ CREATE TABLE public.usuario_papel
 
 ALTER TABLE public.usuario_papel
     ADD FOREIGN KEY (codigo_usuario)
-    REFERENCES public.usuarios (codigo)
+    REFERENCES public.usuario (codigo)
     NOT VALID;
 
 
