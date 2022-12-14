@@ -1,5 +1,7 @@
 package web.sindicato.service;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,11 @@ public class SocioService {
 	@Transactional
 	public void salvar(Socio socio) {
 		socioRepository.save(socio);
+	}
+
+	public void alterar(@Valid Socio socio) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

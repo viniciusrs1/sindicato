@@ -18,8 +18,11 @@
 				<a class="menu-iten-selected" href="/empresas/listar" th:if="${#httpServletRequest.requestURI == '/empresas/listar'} or ${#httpServletRequest.requestURI == '/empresas/adicionar'}"><i class="bi bi-building"></i>Empresas</a>
 				<a href="/empresas/listar" th:if="!${#httpServletRequest.requestURI == '/empresas/listar'} and !${#httpServletRequest.requestURI == '/empresas/adicionar'}"><i class="bi bi-building"></i>Empresas</a>
 				
-				<a class="menu-iten-selected" href="/listpartners" th:if="${#httpServletRequest.requestURI == '/listpartners'} or ${#httpServletRequest.requestURI == '/addpartners'}"><i class="bi bi-people"></i></i>Sócios</a>
-				<a href="/listpartners" th:if="!${#httpServletRequest.requestURI == '/listpartners'} and !${#httpServletRequest.requestURI == '/addpartners'}"><i class="bi bi-people"></i></i>Sócios</a>
+				<a class="menu-iten-selected" href="/socios/listar" th:if="${#httpServletRequest.requestURI == '/socios/listar'} or ${#httpServletRequest.requestURI == '/socios/adicionar'}"><i class="bi bi-people"></i></i>Sócios</a>
+				<a href="/socios/listar" th:if="!${#httpServletRequest.requestURI == '/socios/listar'} and !${#httpServletRequest.requestURI == '/socios/adicionar'}"><i class="bi bi-people"></i></i>Sócios</a>
+				
+				<a class="menu-iten-selected" href="/relatorio" th:if="${#httpServletRequest.requestURI == '/relatorio'} "><i class="bi bi-people"></i></i>Relatório</a>
+				<a href="/relatorio" th:if="!${#httpServletRequest.requestURI == '/relatorio'}"><i class="bi bi-file-earmark-text"></i></i>Relatório</a>
 				
 				
 				

@@ -2,11 +2,17 @@ package web.sindicato.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +22,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import web.sindicato.repository.PapelRepository;
-import web.sindicato.service.CadastroUsuarioService;
-import web.sindicato.controller.UsuarioController;
 import web.sindicato.model.Papel;
 import web.sindicato.model.Usuario;
+import web.sindicato.model.filter.UsuarioFilter;
+import web.sindicato.pagination.PageWrapper;
+import web.sindicato.repository.PapelRepository;
+import web.sindicato.repository.UsuarioRepository;
+import web.sindicato.service.CadastroUsuarioService;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -32,15 +40,23 @@ public class UsuarioController {
 	private PapelRepository papelRepository;
 	
 	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
 	
 	@GetMapping("/listar")
-	public String listUsers(Usuario usuario, Model model) {
-		List<Papel> papeis = papelRepository.findAll();
-		model.addAttribute("todosPapeis", papeis);
+	public String listUsers(UsuarioFilter filtro, Model model, 
+			@PageableDefault(size = 10) @SortDefault(sort = "codigo", direction = Sort.Direction.ASC) Pageable pageable,
+			HttpServletRequest request) {
+	
+
+	Page<Usuario> pagina = usuarioRepository.pesquisar(filtro, pageable);
+	PageWrapper<Usuario> paginaWrapper = new PageWrapper<>(pagina, request);
+	model.addAttribute("pagina", paginaWrapper);
 		return "users/listusers";
 	}
 	

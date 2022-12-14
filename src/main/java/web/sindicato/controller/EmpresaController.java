@@ -56,6 +56,21 @@ public class EmpresaController {
 		return "companies/listcompanies";
 	}
 	
+	
+	@GetMapping("/buscar")
+	public String searchCompanies(EmpresaFilter filtro, Model model, 
+			@PageableDefault(size = 10) @SortDefault(sort = "codigo", direction = Sort.Direction.ASC) Pageable pageable,
+			HttpServletRequest request) {
+	
+
+	Page<Empresa> pagina = empresaRepository.pesquisar(filtro, pageable);
+	PageWrapper<Empresa> paginaWrapper = new PageWrapper<>(pagina, request);
+	model.addAttribute("pagina", paginaWrapper);
+		return "companies/listcompanies";
+	}
+	
+	
+	
 	@GetMapping("/adicionar")
 	public String opneAdd(Empresa empresa) {
 		return "companies/addcompanies";
