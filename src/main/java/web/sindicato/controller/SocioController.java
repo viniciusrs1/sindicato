@@ -19,13 +19,17 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import web.sindicato.model.Empresa;
 import web.sindicato.model.Socio;
+import web.sindicato.model.Taxa;
 import web.sindicato.model.filter.SocioFilter;
+import web.sindicato.model.filter.TaxaFilter;
 import web.sindicato.pagination.PageWrapper;
 import web.sindicato.repository.SocioRepository;
+import web.sindicato.repository.TaxaRepository;
 import web.sindicato.service.SocioService;
+import web.sindicato.service.TaxaService;
 
 @Controller
 @RequestMapping("/socios")
@@ -38,7 +42,13 @@ public class SocioController {
 	private SocioRepository socioRepository;
 	
 	@Autowired
+	private TaxaRepository taxaRepository;
+	
+	@Autowired
 	private SocioService socioService;
+	
+	@Autowired
+	private TaxaService taxaService;
 	
 	
 	@GetMapping("/listar")
@@ -66,7 +76,28 @@ public class SocioController {
 		return "partners/listpartners";
 	}
 	
+	@GetMapping("/abrirtaxas")
+	public String listTaxes(Socio socio, Model model, 
+			@PageableDefault(size = 10) @SortDefault(sort = "codigo", direction = Sort.Direction.ASC) Pageable pageable,
+			HttpServletRequest request) {
 	
+	TaxaFilter filtro = new TaxaFilter();
+	filtro.setCodigoSocio(socio.getCodigo());
+	Page<Taxa> pagina = taxaRepository.pesquisar(filtro, pageable);
+	PageWrapper<Taxa> paginaWrapper = new PageWrapper<>(pagina, request);
+	model.addAttribute("nome", socio.getNome());
+	model.addAttribute("pagina", paginaWrapper);
+		return "partners/taxes";
+	}
+	
+	@PostMapping("/alterartaxa")
+	public String alterar(RedirectAttributes atributos, Taxa taxa) {
+		taxa.setPago(true);
+		taxaService.alterar(taxa);
+		atributos.addAttribute("nome", taxa.getSocio().getNome());
+		atributos.addAttribute(taxa.getSocio());
+		return "redirect:/socios/abrirtaxas";
+	}
 	
 	@GetMapping("/adicionar")
 	public String opneAdd(Socio socio) {
@@ -88,24 +119,13 @@ public class SocioController {
 		}
 	}
 	
-	@PostMapping("/abrirtaxas")
-	public String openTaxes(Socio socio) {
-		return "partners/taxes";
-	}
 	
-	@PostMapping("/taxas")
-	public String alterar(@Valid Socio socio, BindingResult resultado) {
-		if (resultado.hasErrors()) {
-			logger.info("O socio recabida para alterar não é válida.");
-			logger.info("Erros encontrados:");
-			for (FieldError erro : resultado.getFieldErrors()) {
-				logger.info("{}", erro);
-			}
-			return "partners/taxes";
-		} else {
-			socioService.alterar(socio);
-			return "redirect:/socios/taxas";
-		}
-	}
+//	@PostMapping("/abrirtaxas")
+//	public String openTaxes(Socio socio, Model model) {
+//		model.addAttribute("nome", socio.getNome());
+//		return "partners/taxes";
+//	}
+	
+
 
 }

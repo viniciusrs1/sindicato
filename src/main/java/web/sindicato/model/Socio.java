@@ -38,8 +38,7 @@ public class Socio implements Serializable {
 	@Column(name = "data_criacao")
 	private LocalDate dataCriacao;
 	private Boolean pendente = false;
-	@OneToMany
-	@JoinColumn(name = "codigo_socio")
+	@OneToMany(mappedBy = "socio")
 	private Set<Taxa> taxas = new LinkedHashSet<>();
 	@ManyToOne
 	@JoinColumn(name = "codigo_empresa")

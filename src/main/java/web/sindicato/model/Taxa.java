@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,13 +18,16 @@ import javax.persistence.Table;
 public class Taxa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@SequenceGenerator(name="gerador3", sequenceName="taxa_codigo_seq", allocationSize=1)
-	@GeneratedValue(generator="gerador3", strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "gerador3", sequenceName = "taxa_codigo_seq", allocationSize = 1)
+	@GeneratedValue(generator = "gerador3", strategy = GenerationType.SEQUENCE)
 	private Long codigo;
 	private LocalDate data;
 	private Float valor;
+	@ManyToOne
+	@JoinColumn(name = "codigo_socio")
+		private Socio socio;
 	private Boolean pago = false;
 	
 	
@@ -63,6 +68,18 @@ public class Taxa implements Serializable {
 
 
 
+	public Socio getSocio() {
+		return socio;
+	}
+
+
+
+	public void setSocio(Socio socio) {
+		this.socio = socio;
+	}
+
+
+
 	public Boolean getPago() {
 		return pago;
 	}
@@ -83,7 +100,7 @@ public class Taxa implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codigo, data, pago, valor);
+		return Objects.hash(codigo, data, pago, socio, valor);
 	}
 
 
@@ -98,17 +115,17 @@ public class Taxa implements Serializable {
 			return false;
 		Taxa other = (Taxa) obj;
 		return Objects.equals(codigo, other.codigo) && Objects.equals(data, other.data)
-				&& Objects.equals(pago, other.pago) && Objects.equals(valor, other.valor);
+				&& Objects.equals(pago, other.pago) && Objects.equals(socio, other.socio)
+				&& Objects.equals(valor, other.valor);
 	}
 
 
 
 	@Override
 	public String toString() {
-		return "Taxa [codigo=" + codigo + ", data=" + data + ", valor=" + valor + ", pago=" + pago + "]";
+		return "Taxa [codigo=" + codigo + ", data=" + data + ", valor=" + valor + ", socio=" + socio + ", pago=" + pago
+				+ "]";
 	}
 
 
-
 }
-

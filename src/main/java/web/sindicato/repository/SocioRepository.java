@@ -7,4 +7,6 @@ import web.sindicato.repository.helper.socio.SocioQueries;
 
 public interface SocioRepository extends JpaRepository<Socio, Long>, SocioQueries {
 
+	
+	
 }

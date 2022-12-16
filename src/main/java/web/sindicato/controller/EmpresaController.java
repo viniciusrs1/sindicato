@@ -44,6 +44,14 @@ public class EmpresaController {
 	private EmpresaService empresaService;
 	
 	
+	@PostMapping("/gerartaxa")
+	public String gerarTaxa(Empresa empresa) {
+		empresaService.gerarTaxas(empresa);
+		empresa.setTaxasAtualizadas(true);
+		empresaService.alterar(empresa);
+		return "redirect:/empresas/listar";
+	}
+	
 	@GetMapping("/listar")
 	public String listCompanies(EmpresaFilter filtro, Model model, 
 			@PageableDefault(size = 10) @SortDefault(sort = "codigo", direction = Sort.Direction.ASC) Pageable pageable,

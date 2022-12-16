@@ -31,15 +31,34 @@
 							<thead>
 								<tr>
 									<th scope="col">Nome</th>
-									<th scope="col">Status de pagamento</th>
+									<th scope="col">Taxas atuais Geradas</th>
+									<th scope="col">Gerar Taxas</th>
 									<th scope="col">Ações</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="e : ${pagina.conteudo}">
 									<td th:text="${e.nome}"></td>
-									<td th:text="${e.taxasAtualizadas} ? 'Pago' : 'Pendente' "></td>
-
+									<td th:text="${e.taxasAtualizadas} ? 'Sim' : 'Não' "></td>
+									<td>
+										<div class="form-actions">
+											<form th:action="@{/empresas/gerartaxa}" method="post">
+												<input type="hidden" name="codigo" th:value="${e.codigo}">
+												<input type="hidden" name="nome" th:value="${e.nome}">
+												<input type="hidden" name="taxa" th:value="${e.taxa}">
+												<div th:unless="${e.taxasAtualizadas}" class="form-actions">
+													<button type="submit" title="Gerar" class="btn btn-secondary">
+														<i class="bi bi-square"></i>
+													</button>
+												</div>
+												<div th:if="${e.taxasAtualizadas}" class="form-actions">
+													<button type="button" disabled>
+														<i class="bi bi-check-square"></i>
+													</button>
+												</div>
+											</form>
+										</div>
+									</td>
 									<td>
 										<div class="form-actions">
 											<form th:action="@{/empresas/abriralterar}" method="post">

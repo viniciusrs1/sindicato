@@ -16,6 +16,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
+import web.sindicato.model.Empresa;
 import web.sindicato.model.Socio;
 import web.sindicato.model.filter.SocioFilter;
 import web.sindicato.repository.pagination.PaginacaoUtil;
@@ -69,4 +70,11 @@ public class SocioQueriesImpl implements SocioQueries {
 		return page;
 	}
 
+	public List<Socio> pesqusarPorEmpresa(Empresa empresa){
+		TypedQuery<Socio> query = manager.createQuery("select s from Socio s where s.empresa.codigo =: emp", Socio.class);
+		query.setParameter("emp", empresa.getCodigo());
+		List<Socio> lista = query.getResultList();
+		return lista;						
+	}
+	
 }

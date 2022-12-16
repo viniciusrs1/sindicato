@@ -26,6 +26,7 @@ CREATE TABLE public.taxas
     codigo serial NOT NULL,
     data date,
     codigo_socio integer,
+    pago boolean,
     valor float,
     PRIMARY KEY (codigo)
 );

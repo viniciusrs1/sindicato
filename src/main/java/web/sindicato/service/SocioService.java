@@ -1,11 +1,12 @@
 package web.sindicato.service;
 
-import javax.validation.Valid;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import web.sindicato.model.Empresa;
 import web.sindicato.model.Socio;
 import web.sindicato.repository.SocioRepository;
 
@@ -20,9 +21,8 @@ public class SocioService {
 		socioRepository.save(socio);
 	}
 
-	public void alterar(@Valid Socio socio) {
-		// TODO Auto-generated method stub
-		
+	public void gerarTaxa(Empresa empresa) {
+		List<Socio> socios = socioRepository.pesqusarPorEmpresa(empresa);
 	}
-
+	
 }

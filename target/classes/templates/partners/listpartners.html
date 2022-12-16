@@ -32,8 +32,8 @@
 								<tr>
 									<th scope="col">Nome</th>
 									<th scope="col">Cargo</th>
-									<th scope="col">Status de pagamento</th>
-									<th scope="col">Ações</th>
+									<th scope="col">Pagamentos</th>
+									<th scope="col">Taxas</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -43,17 +43,16 @@
 									<td th:text="${s.pendente} ? 'Pendente' : 'Pago' "></td>
 									<td>
 										<div class="form-actions">
-											<form th:action="@{/socios/abrirtaxas}" method="post">
+											<form th:action="@{/socios/abrirtaxas}" method="get">
 												<input type="hidden" name="codigo" th:value="${s.codigo}">
+												<input type="hidden" name="nome" th:value="${s.nome}">
 												<button type="submit" title="Taxas" class="btn btn-secondary">
-													<i class="bi bi-pencil-square first-icon"></i>
+													<i class="bi bi-coin"></i>
 												</button>
 											</form>
 										</div>
 									</td>
 								</tr>
-
-
 							</tbody>
 						</table>
 					</div>

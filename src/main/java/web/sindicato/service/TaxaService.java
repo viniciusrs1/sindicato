@@ -18,4 +18,9 @@ public class TaxaService {
 		taxaRepository.save(taxa);
 	}
 	
+	@Transactional
+	public void alterar(Taxa taxa) {
+		taxaRepository.save(taxa);
+	}
+	
 }
