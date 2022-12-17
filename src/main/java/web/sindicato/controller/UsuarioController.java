@@ -64,6 +64,7 @@ public class UsuarioController {
 	public String addUsers(Usuario usuario, Model model) {
 		
 		List<Papel> papeis = papelRepository.findAll();
+		
 		model.addAttribute("todosPapeis", papeis);
 		return "users/addusers";
 	}
