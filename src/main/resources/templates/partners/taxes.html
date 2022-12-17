@@ -55,13 +55,11 @@
 							
 						</table>
 					<a class="menu-iten-selected" href="/socios/listar" th:if="${#httpServletRequest.requestURI == '/socios/listar'} or ${#httpServletRequest.requestURI == '/socios/adicionar'}">
-								<i class="bi bi-people"></i>
-								</i>
+								
 								Voltar
 							</a>
 							<a href="/socios/listar" th:if="!${#httpServletRequest.requestURI == '/socios/listar'} and !${#httpServletRequest.requestURI == '/socios/adicionar'}">
-								<i class="bi bi-people"></i>
-								</i>
+								
 								Voltar
 							</a>
 					</div>

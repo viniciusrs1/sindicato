@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioTaxa" pageWidth="324" pageHeight="842" columnWidth="324" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="07542293-11d5-4af9-95af-1487b0e3340d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco Sindicato Adapter"/>
+	<parameter name="ID_SOCIO" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT codigo,
+	data,
+	codigo_socio,
+	pago,
+	valor
+FROM taxas
+WHERE 
+	 taxas.codigo_socio = $P{ID_SOCIO} 
+ORDER BY taxas.data ASC]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="taxas"/>
+	</field>
+	<field name="data" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="data"/>
+		<property name="com.jaspersoft.studio.field.label" value="data"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="taxas"/>
+	</field>
+	<field name="codigo_socio" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="codigo_socio"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo_socio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="taxas"/>
+	</field>
+	<field name="pago" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="pago"/>
+		<property name="com.jaspersoft.studio.field.label" value="pago"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="taxas"/>
+	</field>
+	<field name="valor" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="valor"/>
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="taxas"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="34" height="18" uuid="a1dcb33f-95e3-4455-b7ba-5a42b309875c"/>
+				<text><![CDATA[Taxas:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="34" y="0" width="86" height="20" uuid="4fc67cc8-85c5-4be4-82a0-3ef4d80a8cf7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1e3ff7e3-11be-4f55-a09c-6e71dbf1222e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{data})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="-1" width="34" height="21" uuid="8e5bd95a-181c-4257-a786-71a210ab8fba">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1e3ff7e3-11be-4f55-a09c-6e71dbf1222e"/>
+				</reportElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="0" width="70" height="20" uuid="fe51e3b9-472f-4025-8313-47ecd9aa2244"/>
+				<text><![CDATA[Pagamento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="0" width="100" height="20" forecolor="#10B318" uuid="685ee4f3-9f74-4aee-943e-2dc730acfbea">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c72d0086-a878-4b60-88e8-a21797052d51"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{pago} == true ? "✔" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="100" height="20" forecolor="#E00F0B" uuid="eeb3b46b-d482-460b-8b0f-d256e15abc4f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c72d0086-a878-4b60-88e8-a21797052d51"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{pago} == true ? "" : "×"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

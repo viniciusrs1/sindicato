@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioEmpresa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="07b5ce6b-e321-4f05-94dd-66c376b2d288">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="ZW1wcmVzYXMgQVMgLDk1LDc0LDk1MzhiZmI0LWY3M2MtNDNkZS1iMGM0LTI3Mzk5OGRmYzlkYzs="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco Sindicato Adapter"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT codigo,
+	nome,
+	taxa,
+	status,
+	data_criacao,
+	taxas_atualizadas
+FROM empresas
+WHERE status = 'ATIVO']]>
+	</queryString>
+	<field name="codigo" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresas"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresas"/>
+	</field>
+	<field name="taxa" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="taxa"/>
+		<property name="com.jaspersoft.studio.field.label" value="taxa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresas"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresas"/>
+	</field>
+	<field name="data_criacao" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="data_criacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_criacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresas"/>
+	</field>
+	<field name="taxas_atualizadas" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="taxas_atualizadas"/>
+		<property name="com.jaspersoft.studio.field.label" value="taxas_atualizadas"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresas"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="81" uuid="1ec2c758-3cc0-4858-91fa-1fb9385d2073"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Sindicato Sindae
+]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="83" width="555" height="1" uuid="7d780d06-22b2-4006-966d-d83e8100171f"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="98" splitType="Stretch">
+			<textField>
+				<reportElement x="50" y="0" width="260" height="20" uuid="030f01b3-7b8a-4252-b0e2-34ac7adb0054"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="20" uuid="bf0102cf-c147-47be-9b03-7378582cd0dc"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Empresa: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="116" height="20" uuid="d2d484ee-af71-482e-966a-2bd1c746e9de"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Status de Pagamento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="476" y="0" width="78" height="20" forecolor="#10B318" uuid="62a6e3fe-8733-4c37-9704-f26274d2748e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{taxas_atualizadas} == true ? "Adequado" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="476" y="0" width="78" height="20" forecolor="#E00F0B" uuid="85ac0b24-4e42-4bfd-8ea4-cb89d0748843"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{taxas_atualizadas} == true ? "" : "Pendente"]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="17" y="30" width="521" height="50" uuid="5155ed7c-0461-4a0b-897b-c912a18865d1"/>
+				<subreportParameter name="ID_EMPRESA">
+					<subreportParameterExpression><![CDATA[$F{codigo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["src/main/resources/relatorios/RelatorioSocio.jasper"]]></subreportExpression>
+			</subreport>
+			<line>
+				<reportElement positionType="Float" x="-1" y="86" width="555" height="1" uuid="32654d7b-c5cf-4bac-8c7b-4746eb307b06"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

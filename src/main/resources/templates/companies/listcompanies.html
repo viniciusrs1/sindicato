@@ -19,11 +19,12 @@
 					<div class="wrapper-search-button-input">
 						<form th:action="@{/empresas/buscar}" method="get">
 							<input type="text" class="form-control" name="nome" id="nome" placeholder="Buscar por nome... ">
-							<button type="submit" class="btn btn-primary">Buscar</button>
-							<button>
-								<a href="/empresas/adicionar">Adicionar empresa</a>
-							</button>
+							<button type="submit" class="btn btn-primary">Buscar</button>							
 						</form>
+						
+						<button>
+								<a href="/empresas/adicionar">Adicionar empresa</a>
+						</button>
 					</div>
 
 					<div class="wrapper-table">

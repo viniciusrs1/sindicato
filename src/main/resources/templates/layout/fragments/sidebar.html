@@ -21,9 +21,9 @@
 				<a class="menu-iten-selected" href="/socios/listar" th:if="${#httpServletRequest.requestURI == '/socios/listar'} or ${#httpServletRequest.requestURI == '/socios/adicionar'}"><i class="bi bi-people"></i></i>Sócios</a>
 				<a href="/socios/listar" th:if="!${#httpServletRequest.requestURI == '/socios/listar'} and !${#httpServletRequest.requestURI == '/socios/adicionar'}"><i class="bi bi-people"></i></i>Sócios</a>
 				
-				<a class="menu-iten-selected" href="/relatorio" th:if="${#httpServletRequest.requestURI == '/relatorio'} "><i class="bi bi-people"></i></i>Relatório</a>
-				<a href="/relatorio" th:if="!${#httpServletRequest.requestURI == '/relatorio'}"><i class="bi bi-file-earmark-text"></i></i>Relatório</a>
 				
+				
+				<a th:href="@{/relatorios/geral}"><i class="bi bi-file-earmark-text"></i></i>Relatório</a>
 				
 				
 				

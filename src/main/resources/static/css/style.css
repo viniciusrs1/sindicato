@@ -181,11 +181,16 @@ p{
     justify-content: space-between;
 }
 
+.wrapper-search-button-input form {
+	display: flex;
+}
+
 .wrapper-search-button-input input{
     border-radius: 5px;
     border: 1px solid #39396d;
     font-size: 20px;
     background: #ffffff;
+    margin-right: 24px;
 }
 
 .wrapper-search-button-input button{

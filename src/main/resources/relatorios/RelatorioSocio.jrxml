@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioSocio" pageWidth="555" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="88b874f3-200b-4f43-a7d8-19ba52cd9e88">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco Sindicato Adapter"/>
+	<parameter name="ID_EMPRESA" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT codigo,
+	nome,
+	cargo,
+	status,
+	data_criacao,
+	pendente,
+	codigo_empresa
+FROM socios
+WHERE codigo_empresa = $P{ID_EMPRESA}]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="socios"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="socios"/>
+	</field>
+	<field name="cargo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cargo"/>
+		<property name="com.jaspersoft.studio.field.label" value="cargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="socios"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="socios"/>
+	</field>
+	<field name="data_criacao" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="data_criacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_criacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="socios"/>
+	</field>
+	<field name="pendente" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="pendente"/>
+		<property name="com.jaspersoft.studio.field.label" value="pendente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="socios"/>
+	</field>
+	<field name="codigo_empresa" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="codigo_empresa"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo_empresa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="socios"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="56" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="250" height="20" uuid="cc36e2b8-f729-4433-aed8-4ec17f832b12"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="44" height="20" forecolor="#E00F0B" uuid="ac32a8a6-79f0-4346-87de-bf37121a56ab"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pendente} == true ? "NÃO" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="44" height="20" forecolor="#10B318" uuid="5dc2c35f-7c25-40f0-acb7-8d904ac5db36"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pendente} == true ? "" : "SIM"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="190" height="20" uuid="6c714092-ae36-41ee-b996-6e41ea513ef9"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="440" y="0" width="70" height="20" uuid="a2c88126-e6eb-4f61-94e3-6f2179e2d69f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Regularizado:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="115" y="30" width="325" height="22" uuid="5db3ac2f-4df8-42aa-a39c-d3e365e9747d"/>
+				<subreportParameter name="ID_SOCIO">
+					<subreportParameterExpression><![CDATA[$F{codigo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["src/main/resources/relatorios/RelatorioTaxa.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>
