@@ -16,9 +16,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
-import web.sindicato.model.Status;
-
 import web.sindicato.model.Empresa;
+import web.sindicato.model.Status;
 import web.sindicato.model.filter.EmpresaFilter;
 import web.sindicato.repository.pagination.PaginacaoUtil;
 

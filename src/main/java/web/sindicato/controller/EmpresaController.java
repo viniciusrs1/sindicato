@@ -1,6 +1,5 @@
 package web.sindicato.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -20,72 +19,62 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-
+import web.sindicato.model.Empresa;
+import web.sindicato.model.Status;
+import web.sindicato.model.filter.EmpresaFilter;
 import web.sindicato.pagination.PageWrapper;
 import web.sindicato.repository.EmpresaRepository;
 import web.sindicato.service.EmpresaService;
-import web.sindicato.model.Status;
-
-import web.sindicato.model.Empresa;
-import web.sindicato.model.filter.EmpresaFilter;
 
 @Controller
 @RequestMapping("/empresas")
 public class EmpresaController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(EmpresaController.class);
-	
-	
+
 	@Autowired
 	private EmpresaRepository empresaRepository;
-	
+
 	@Autowired
 	private EmpresaService empresaService;
-	
-	
+
 	@PostMapping("/gerartaxa")
 	public String gerarTaxa(Empresa empresa) {
 		empresaService.gerarTaxas(empresa);
-		empresa.setTaxasAtualizadas(true);
-		empresaService.alterar(empresa);
 		return "redirect:/empresas/listar";
 	}
-	
+
 	@GetMapping("/listar")
-	public String listCompanies(EmpresaFilter filtro, Model model, 
+	public String listCompanies(EmpresaFilter filtro, Model model,
 			@PageableDefault(size = 10) @SortDefault(sort = "codigo", direction = Sort.Direction.ASC) Pageable pageable,
 			HttpServletRequest request) {
-	
-
-	Page<Empresa> pagina = empresaRepository.pesquisar(filtro, pageable);
-	PageWrapper<Empresa> paginaWrapper = new PageWrapper<>(pagina, request);
-	model.addAttribute("pagina", paginaWrapper);
+		empresaService.taxasAtualizadas();
+		Page<Empresa> pagina = empresaRepository.pesquisar(filtro, pageable);
+		PageWrapper<Empresa> paginaWrapper = new PageWrapper<>(pagina, request);
+		model.addAttribute("pagina", paginaWrapper);
 		return "companies/listcompanies";
 	}
-	
-	
+
 	@GetMapping("/buscar")
-	public String searchCompanies(EmpresaFilter filtro, Model model, 
+	public String searchCompanies(EmpresaFilter filtro, Model model,
 			@PageableDefault(size = 10) @SortDefault(sort = "codigo", direction = Sort.Direction.ASC) Pageable pageable,
 			HttpServletRequest request) {
-	
-
-	Page<Empresa> pagina = empresaRepository.pesquisar(filtro, pageable);
-	PageWrapper<Empresa> paginaWrapper = new PageWrapper<>(pagina, request);
-	model.addAttribute("pagina", paginaWrapper);
+		empresaService.taxasAtualizadas();
+		Page<Empresa> pagina = empresaRepository.pesquisar(filtro, pageable);
+		PageWrapper<Empresa> paginaWrapper = new PageWrapper<>(pagina, request);
+		model.addAttribute("pagina", paginaWrapper);
 		return "companies/listcompanies";
 	}
-	
-	
-	
+
 	@GetMapping("/adicionar")
 	public String opneAdd(Empresa empresa) {
+
 		return "companies/addcompanies";
 	}
-	
+
 	@PostMapping("/adicionar")
 	public String cadastrar(@Valid Empresa empresa, BindingResult resultado) {
+
 		if (resultado.hasErrors()) {
 			logger.info("A empresa recabida para cadastrar não é válida.");
 			logger.info("Erros encontrados:");
@@ -98,15 +87,16 @@ public class EmpresaController {
 			return "redirect:/empresas/listar";
 		}
 	}
-	
+
 	@PostMapping("/abriralterar")
 	public String openEdit(Empresa empresa) {
 		return "companies/editcompany";
 	}
-	
+
 	@PostMapping("/alterar")
 	public String alterar(@Valid Empresa empresa, BindingResult resultado) {
 		if (resultado.hasErrors()) {
+
 			logger.info("A empresa recabida para alterar não é válida.");
 			logger.info("Erros encontrados:");
 			for (FieldError erro : resultado.getFieldErrors()) {
@@ -118,9 +108,10 @@ public class EmpresaController {
 			return "redirect:/empresas/listar";
 		}
 	}
-	
+
 	@PostMapping("/remover")
 	public String remover(Empresa empresa) {
+
 		empresa.setStatus(Status.INATIVO);
 		empresaService.alterar(empresa);
 		return "redirect:/empresas/listar";

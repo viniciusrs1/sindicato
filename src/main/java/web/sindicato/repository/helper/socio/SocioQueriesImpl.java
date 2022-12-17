@@ -70,7 +70,7 @@ public class SocioQueriesImpl implements SocioQueries {
 		return page;
 	}
 
-	public List<Socio> pesqusarPorEmpresa(Empresa empresa){
+	public List<Socio> pesquisarPorEmpresa(Empresa empresa){
 		TypedQuery<Socio> query = manager.createQuery("select s from Socio s where s.empresa.codigo =: emp", Socio.class);
 		query.setParameter("emp", empresa.getCodigo());
 		List<Socio> lista = query.getResultList();

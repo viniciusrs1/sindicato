@@ -20,7 +20,7 @@ public class Taxa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "gerador3", sequenceName = "taxa_codigo_seq", allocationSize = 1)
+	@SequenceGenerator(name = "gerador3", sequenceName = "taxas_codigo_seq", allocationSize = 1)
 	@GeneratedValue(generator = "gerador3", strategy = GenerationType.SEQUENCE)
 	private Long codigo;
 	private LocalDate data;

@@ -13,6 +13,6 @@ public interface SocioQueries {
 
 	Page<Socio> pesquisar(SocioFilter filtro, Pageable pageable);
 	
-	List<Socio> pesqusarPorEmpresa(Empresa empresa);
+	List<Socio> pesquisarPorEmpresa(Empresa empresa);
 }
 

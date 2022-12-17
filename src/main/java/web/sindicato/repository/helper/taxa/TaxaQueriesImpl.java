@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -25,10 +26,10 @@ public class TaxaQueriesImpl implements TaxaQueries {
 
 	@PersistenceContext
 	private EntityManager manager;
-	
+
 	@Override
 	public Page<Taxa> pesquisar(TaxaFilter filtro, Pageable pageable) {
-		
+
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<Taxa> criteriaQuery = builder.createQuery(Taxa.class);
 		Root<Taxa> t = criteriaQuery.from(Taxa.class);
@@ -37,25 +38,21 @@ public class TaxaQueriesImpl implements TaxaQueries {
 		List<Predicate> predicateList = new ArrayList<>();
 
 		if (filtro.getCodigo() != null) {
-			predicateList.add(builder.equal(t.<Long>get("codigo"), 
-		                 filtro.getCodigo()));
+			predicateList.add(builder.equal(t.<Long>get("codigo"), filtro.getCodigo()));
 		}
-		
+
 		if (filtro.getCodigoSocio() != null) {
-			predicateList.add(builder.equal(t.<Socio>get("socio").<Long>get("codigo"),
-					filtro.getCodigoSocio()));
+			predicateList.add(builder.equal(t.<Socio>get("socio").<Long>get("codigo"), filtro.getCodigoSocio()));
 		}
-		
+
 		if (filtro.getPago() != null) {
 			if (filtro.getPago()) {
 				predicateList.add(builder.isTrue(t.get("pago").as(Boolean.class)));
-			}
-			else {
+			} else {
 				predicateList.add(builder.isFalse(t.get("pago").as(Boolean.class)));
 			}
 		}
-		
-				
+
 		Predicate[] predArray = new Predicate[predicateList.size()];
 		predicateList.toArray(predArray);
 
@@ -63,14 +60,22 @@ public class TaxaQueriesImpl implements TaxaQueries {
 		PaginacaoUtil.prepararOrdem(t, criteriaQuery, builder, pageable);
 		typedQuery = manager.createQuery(criteriaQuery);
 		PaginacaoUtil.prepararIntervalo(typedQuery, pageable);
-								
+
 		List<Taxa> taxas = typedQuery.getResultList();
-		
+
 		long totalTaxas = PaginacaoUtil.getTotalRegistros(t, predArray, builder, manager);
 
-		Page<Taxa> page = new PageImpl<>(taxas, pageable, totalTaxas); 
-		
+		Page<Taxa> page = new PageImpl<>(taxas, pageable, totalTaxas);
+
 		return page;
+	}
+
+	public Boolean verificar(Socio socio) {
+		String query = "select case when exists(select true from taxas t where t.codigo_socio =? and t.pago = false)  then true else false end";
+		Query booleanQuery = manager.createNativeQuery(query);
+		booleanQuery.setParameter(1, socio.getCodigo());
+		Boolean exists = (Boolean) booleanQuery.getSingleResult();
+		return exists;
 	}
 
 }

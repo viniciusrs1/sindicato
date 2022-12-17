@@ -1,5 +1,8 @@
 package web.sindicato.service;
 
+import java.time.LocalDate;
+import java.util.ListIterator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +18,10 @@ public class EmpresaService {
 
 	@Autowired
 	private SocioService socioService;
-	
+
+	@Autowired
+	private TaxaService taxaService;
+
 	@Transactional
 	public void salvar(Empresa empresa) {
 		empresaRepository.save(empresa);
@@ -38,8 +44,24 @@ public class EmpresaService {
 	}
 
 	public void gerarTaxas(Empresa empresa) {
-		socioService.gerarTaxa(empresa);
-		
+		Empresa e = empresaRepository.findById(empresa.getCodigo()).orElse(empresa);
+		socioService.gerarTaxa(e);
+		e.setTaxasAtualizadas(true);
+		this.alterar(e);
 	}
 
+	public void taxasAtualizadas() {
+		LocalDate ultimataxa = taxaService.ultimaTaxaGerada();
+		if (ultimataxa != null) {
+			if (ultimataxa.getMonth() != LocalDate.now().getMonth()
+					|| ultimataxa.getYear() != LocalDate.now().getYear()) {
+				ListIterator<Empresa> empresas = empresaRepository.findAll().listIterator();
+				while (empresas.hasNext()) {
+					Empresa empresa = (Empresa) empresas.next();
+					empresa.setTaxasAtualizadas(false);
+					this.alterar(empresa);
+				}
+			}
+		}
+	}
 }

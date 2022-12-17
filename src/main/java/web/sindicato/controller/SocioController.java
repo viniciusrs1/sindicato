@@ -1,6 +1,5 @@
 package web.sindicato.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -34,76 +33,72 @@ import web.sindicato.service.TaxaService;
 @Controller
 @RequestMapping("/socios")
 public class SocioController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(SocioController.class);
-	
-	
+
 	@Autowired
 	private SocioRepository socioRepository;
-	
+
 	@Autowired
 	private TaxaRepository taxaRepository;
-	
+
 	@Autowired
 	private SocioService socioService;
-	
+
 	@Autowired
 	private TaxaService taxaService;
-	
-	
+
 	@GetMapping("/listar")
-	public String listPartners(SocioFilter filtro, Model model, 
+	public String listPartners(SocioFilter filtro, Model model,
 			@PageableDefault(size = 10) @SortDefault(sort = "codigo", direction = Sort.Direction.ASC) Pageable pageable,
 			HttpServletRequest request) {
-	
-
-	Page<Socio> pagina = socioRepository.pesquisar(filtro, pageable);
-	PageWrapper<Socio> paginaWrapper = new PageWrapper<>(pagina, request);
-	model.addAttribute("pagina", paginaWrapper);
+		socioService.verificarTaxa();
+		Page<Socio> pagina = socioRepository.pesquisar(filtro, pageable);
+		PageWrapper<Socio> paginaWrapper = new PageWrapper<>(pagina, request);
+		model.addAttribute("pagina", paginaWrapper);
 		return "partners/listpartners";
 	}
-	
-	
+
 	@GetMapping("/buscar")
-	public String searchPartners(SocioFilter filtro, Model model, 
+	public String searchPartners(SocioFilter filtro, Model model,
 			@PageableDefault(size = 10) @SortDefault(sort = "codigo", direction = Sort.Direction.ASC) Pageable pageable,
 			HttpServletRequest request) {
-	
-
-	Page<Socio> pagina = socioRepository.pesquisar(filtro, pageable);
-	PageWrapper<Socio> paginaWrapper = new PageWrapper<>(pagina, request);
-	model.addAttribute("pagina", paginaWrapper);
+		socioService.verificarTaxa();
+		Page<Socio> pagina = socioRepository.pesquisar(filtro, pageable);
+		PageWrapper<Socio> paginaWrapper = new PageWrapper<>(pagina, request);
+		model.addAttribute("pagina", paginaWrapper);
 		return "partners/listpartners";
 	}
-	
+
 	@GetMapping("/abrirtaxas")
-	public String listTaxes(Socio socio, Model model, 
+	public String listTaxes(Socio socio, Model model,
 			@PageableDefault(size = 10) @SortDefault(sort = "codigo", direction = Sort.Direction.ASC) Pageable pageable,
 			HttpServletRequest request) {
-	
-	TaxaFilter filtro = new TaxaFilter();
-	filtro.setCodigoSocio(socio.getCodigo());
-	Page<Taxa> pagina = taxaRepository.pesquisar(filtro, pageable);
-	PageWrapper<Taxa> paginaWrapper = new PageWrapper<>(pagina, request);
-	model.addAttribute("nome", socio.getNome());
-	model.addAttribute("pagina", paginaWrapper);
+		
+		TaxaFilter filtro = new TaxaFilter();
+		filtro.setCodigoSocio(socio.getCodigo());
+		Page<Taxa> pagina = taxaRepository.pesquisar(filtro, pageable);
+		PageWrapper<Taxa> paginaWrapper = new PageWrapper<>(pagina, request);
+		model.addAttribute("nome", socio.getNome());
+		model.addAttribute("pagina", paginaWrapper);
 		return "partners/taxes";
 	}
-	
+
 	@PostMapping("/alterartaxa")
 	public String alterar(RedirectAttributes atributos, Taxa taxa) {
+		
 		taxa.setPago(true);
 		taxaService.alterar(taxa);
 		atributos.addAttribute("nome", taxa.getSocio().getNome());
 		atributos.addAttribute(taxa.getSocio());
 		return "redirect:/socios/abrirtaxas";
 	}
-	
+
 	@GetMapping("/adicionar")
 	public String opneAdd(Socio socio) {
 		return "partners/addpartners";
 	}
-	
+
 	@PostMapping("/adicionar")
 	public String cadastrar(@Valid Socio socio, BindingResult resultado) {
 		if (resultado.hasErrors()) {
@@ -118,14 +113,5 @@ public class SocioController {
 			return "redirect:/socios/listar";
 		}
 	}
-	
-	
-//	@PostMapping("/abrirtaxas")
-//	public String openTaxes(Socio socio, Model model) {
-//		model.addAttribute("nome", socio.getNome());
-//		return "partners/taxes";
-//	}
-	
-
 
 }
