@@ -17,12 +17,12 @@
 				<h3 class="session-title">Adicionar sócio</h3>
 				
 				<div class="add-partner">
-					<form>
+					<form th:action="@{/socios/adicionar}" method="post" th:object="${socio}">
 			    		
 			    		<div class="row">
 			    			<div class="col-12">
 					    		<label for="name">Nome</label>
-					    		<input type="text" name="name" id="name">
+					    		<input type="text" name="name" id="name" th:field="*{nome}">
 				    		</div>
 				    		
 				    		
@@ -30,23 +30,24 @@
 			    		
 			    		<div class="row">
 			    			<div class="col-6">
-					    		<label for="company">Empresa</label>
-					    		<select>
-									<option >Copasa</option>
-									<option >Cemig</option>
+					    		<label for="empresa">Empresa</label>
+					    		<select class="form-select" id="empresa" name="empresa" th:errorclass="is-invalid">
+									<option th:each="e : ${empresas}" th:value="${e.codigo}" th:text="${e.nome}"
+									        ></option>
 								</select>
+								
 				    		</div>
 				    		
 				    		<div class="col-6">
 					    		<label for="position">Cargo</label>
-					    		<input type="text" name="position" id="position">
+					    		<input type="text" name="position" id="position" th:field="*{cargo}">
 				    		</div>
 				    		
 				    		
 			    		</div>
 			    		
 			    		<div class="wrapper-button">
-			    			<button>Adicionar</button>
+			    			<button type="submit">Adicionar</button>
 			            </div>
 			        </form>
 				</div>

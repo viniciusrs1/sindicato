@@ -1,5 +1,7 @@
 package web.sindicato.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -20,11 +22,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
+import web.sindicato.model.Status;
+
+import web.sindicato.model.Empresa;
 import web.sindicato.model.Socio;
 import web.sindicato.model.Taxa;
 import web.sindicato.model.filter.SocioFilter;
 import web.sindicato.model.filter.TaxaFilter;
 import web.sindicato.pagination.PageWrapper;
+import web.sindicato.repository.EmpresaRepository;
 import web.sindicato.repository.SocioRepository;
 import web.sindicato.repository.TaxaRepository;
 import web.sindicato.service.SocioService;
@@ -41,6 +48,9 @@ public class SocioController {
 
 	@Autowired
 	private TaxaRepository taxaRepository;
+	
+	@Autowired
+	private EmpresaRepository empresaRepository;
 
 	@Autowired
 	private SocioService socioService;
@@ -95,18 +105,22 @@ public class SocioController {
 	}
 
 	@GetMapping("/adicionar")
-	public String opneAdd(Socio socio) {
+	public String opneAdd(Socio socio, Model model) {
+		List<Empresa> empresas = empresaRepository.findByStatus(Status.ATIVO);
+		model.addAttribute("empresas", empresas);
 		return "partners/addpartners";
 	}
 
 	@PostMapping("/adicionar")
-	public String cadastrar(@Valid Socio socio, BindingResult resultado) {
+	public String cadastrar(@Valid Socio socio, BindingResult resultado, Model model) {
 		if (resultado.hasErrors()) {
 			logger.info("A socio recabida para cadastrar não é válida.");
 			logger.info("Erros encontrados:");
 			for (FieldError erro : resultado.getFieldErrors()) {
 				logger.info("{}", erro);
 			}
+			List<Empresa> empresas = empresaRepository.findByStatus(Status.ATIVO);
+			model.addAttribute("empresas", empresas);
 			return "socios/adicionar";
 		} else {
 			socioService.salvar(socio);

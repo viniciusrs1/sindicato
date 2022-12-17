@@ -28,7 +28,7 @@ public class Socio implements Serializable {
 	private static final long serialVersionUID = -3935828642122652510L;
 
 	@Id
-	@SequenceGenerator(name = "gerador2", sequenceName = "socio_codigo_seq", allocationSize = 1)
+	@SequenceGenerator(name = "gerador2", sequenceName = "socios_codigo_seq", allocationSize = 1)
 	@GeneratedValue(generator = "gerador2", strategy = GenerationType.SEQUENCE)
 	private Long codigo;
 	private String nome;
